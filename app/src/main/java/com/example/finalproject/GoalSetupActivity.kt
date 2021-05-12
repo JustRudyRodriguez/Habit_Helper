@@ -12,5 +12,6 @@ class GoalSetupActivity :AppCompatActivity() {
 
         val gButton = findViewById<Button>(R.id.goalSubmitButton)
 
+
     }
 }
