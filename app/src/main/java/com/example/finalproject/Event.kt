@@ -13,15 +13,12 @@ class Event(Date: LocalDateTime){
 
        val duration = DurationMinutes.toDuration(DurationUnit.MINUTES)
 
-
         fun getTheDuration(): kotlin.time.Duration{
             return duration
         }
     }
-
     fun getThisDate(): LocalDateTime {
         return date
     }
-
 
 }

@@ -14,9 +14,5 @@ class GoalSetupActivity :AppCompatActivity() {
         val gButton = findViewById<Button>(R.id.goalSubmitButton)
         val goalSetup = findViewById<Button>(R.id.goalCancelButton)
 
-
-
-
-
     }
 }
