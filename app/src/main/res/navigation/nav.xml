@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav"
+    app:startDestination="@id/goalList">
+
+    <fragment
+        android:id="@+id/goalList"
+        android:name="com.example.finalproject.GoalList"
+        android:label="fragment_goal_list"
+        tools:layout="@layout/fragment_goal_list" >
+        <action
+            android:id="@+id/action_goalList_to_createGoal"
+            app:destination="@id/createGoal" />
+        <action
+            android:id="@+id/action_goalList_to_updateGoal"
+            app:destination="@id/updateGoal" />
+    </fragment>
+    <fragment
+        android:id="@+id/createGoal"
+        android:name="com.example.finalproject.CreateHabit"
+        android:label="fragment_create_goal"
+        tools:layout="@layout/fragment_create_goal" >
+        <action
+            android:id="@+id/action_createGoal_to_goalList"
+            app:destination="@id/goalList" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateGoal"
+        android:name="com.example.finalproject.UpdateGoal"
+        android:label="fragment_update_goal"
+        tools:layout="@layout/fragment_update_goal" >
+        <action
+            android:id="@+id/action_updateGoal_to_goalList"
+            app:destination="@id/goalList" />
+        <argument android:name="SelectedGoal"
+            app:argType="com.example.finalproject.Habit" />
+    </fragment>
+</navigation>

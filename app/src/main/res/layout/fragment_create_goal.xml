@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/PickTime_Btn"
         android:layout_width="139dp"
         android:layout_height="51dp"
         android:layout_marginTop="68dp"
@@ -21,17 +21,17 @@
         android:id="@+id/goalCancelButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
         android:layout_marginEnd="137dp"
         android:layout_marginBottom="28dp"
         android:backgroundTint="#6589B5"
         android:text="Cancel"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/goalSubmitButton"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/goalSubmitButton"
+        android:id="@+id/CreateHabit_Btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="48dp"
@@ -42,7 +42,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/GoalTitle"
         android:layout_width="258dp"
         android:layout_height="64dp"
         android:layout_marginTop="52dp"
@@ -55,7 +55,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/GoalDesc"
         android:layout_width="259dp"
         android:layout_height="65dp"
         android:layout_marginTop="8dp"
@@ -65,10 +65,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintTop_toBottomOf="@+id/GoalTitle" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/PickDate_Btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
@@ -76,7 +76,7 @@
         android:text="Pick a Date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+        app:layout_constraintTop_toBottomOf="@+id/GoalDesc" />
 
     <TextView
         android:id="@+id/textView"
@@ -85,16 +85,22 @@
         android:text="Date (Not Selected)"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/PickDate_Btn" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="237dp"
         android:layout_height="50dp"
-        android:layout_marginTop="14dp"
+        android:layout_marginBottom="192dp"
         android:text="Time (Not Selected)"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
