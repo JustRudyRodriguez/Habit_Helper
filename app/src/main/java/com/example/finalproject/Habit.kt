@@ -11,5 +11,6 @@ data class Habit(
     val id: Int,
     val habit_title: String,
     val habit_description:String,
-    val habit_startTime:String
+    val habit_startTime:String,
+    val type:String
 )
