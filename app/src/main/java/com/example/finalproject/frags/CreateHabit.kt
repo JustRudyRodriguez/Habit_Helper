@@ -1,4 +1,4 @@
-package com.example.finalproject
+package com.example.finalproject.frags
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
@@ -10,6 +10,10 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.finalproject.Calculations
+import com.example.finalproject.Databasery.Habit
+import com.example.finalproject.Adapters.HabitViewModel
+import com.example.finalproject.R
 import kotlinx.android.synthetic.main.fragment_create_goal.*
 import java.util.*
 
@@ -31,7 +35,7 @@ class CreateHabit : Fragment(R.layout.fragment_create_goal),
     private var cleanDate = ""
     private var cleanTime = ""
 
-    private lateinit var habitViewModel:HabitViewModel
+    private lateinit var habitViewModel: HabitViewModel
 
     override fun onViewCreated(view: View, SavedINstanceState: Bundle?){
         habitViewModel = ViewModelProvider(this).get(HabitViewModel::class.java)
@@ -51,7 +55,13 @@ class CreateHabit : Fragment(R.layout.fragment_create_goal),
         description = GoalDesc.text.toString()
         timestamp = "$cleanDate $cleanTime"
         if(!(title.isEmpty()||description.isEmpty()||timestamp.isEmpty())){
-            val habit = Habit(0,title,description,timestamp,"Type")
+            val habit = Habit(
+                0,
+                title,
+                description,
+                timestamp,
+                "Type"
+            )
             habitViewModel.addHabit(habit)
             Toast.makeText(context,"Habit Created Successfully!",Toast.LENGTH_SHORT).show()
 
@@ -76,12 +86,17 @@ class CreateHabit : Fragment(R.layout.fragment_create_goal),
 
 
     override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
-        cleanTime = Calculations.cleantime(hourOfDay, minute)
+        cleanTime =
+            Calculations.cleantime(hourOfDay, minute)
         textView2.text = "Time: $cleanTime"
     }
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-        cleanDate = Calculations.cleanDate(dayOfMonth,month,year)
+        cleanDate = Calculations.cleanDate(
+            dayOfMonth,
+            month,
+            year
+        )
         textView.text = "Date:$cleanDate"
     }
 

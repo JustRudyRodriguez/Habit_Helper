@@ -1,13 +1,16 @@
-package com.example.finalproject
+package com.example.finalproject.Adapters
 
 import android.content.ContentValues.TAG
-import android.text.Layout
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.finalproject.Calculations
+import com.example.finalproject.Databasery.Habit
+import com.example.finalproject.R
+import com.example.finalproject.frags.GoalListDirections
 import kotlinx.android.synthetic.main.recycleritem.view.*
 
 class GoalAdapter:RecyclerView.Adapter<GoalAdapter.MyViewHolder>() {
@@ -23,13 +26,14 @@ class GoalAdapter:RecyclerView.Adapter<GoalAdapter.MyViewHolder>() {
 
                 //Goallistdirection is created at compiletime.
                 //This action is used to select a specific goal/habit and update or view anything about it.
-                val action = GoalListDirections.actionGoalListToUpdateGoal(GoalList[position])
+                val action = GoalListDirections.actionGoalListToEventView(GoalList[position])
+
                 itemView.findNavController().navigate(action)
             }
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GoalAdapter.MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(
                 LayoutInflater.from(parent.context).inflate(R.layout.recycleritem,parent,false)
         )
@@ -39,12 +43,15 @@ class GoalAdapter:RecyclerView.Adapter<GoalAdapter.MyViewHolder>() {
         return GoalList.size
     }
 
-    override fun onBindViewHolder(holder: GoalAdapter.MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentGoal=GoalList[position]
         //holder.itemView.iv_habit_icon.setImageResource(currentGoal.imageid)
         holder.itemView.tv_item_title.text = currentGoal.habit_title
         holder.itemView.tv_item_description.text = currentGoal.habit_description
-        holder.itemView.tv_timeElapsed.text = Calculations.calculateTimeBetweenDates(currentGoal.habit_startTime);
+        holder.itemView.tv_timeElapsed.text =
+            Calculations.calculateTimeBetweenDates(
+                currentGoal.habit_startTime
+            );
         holder.itemView.tv_item_createdTimeStamp.text = "Since: ${currentGoal.habit_startTime}"
 
         }

@@ -7,19 +7,22 @@
 
     <fragment
         android:id="@+id/goalList"
-        android:name="com.example.finalproject.GoalList"
+        android:name="com.example.finalproject.frags.GoalList"
         android:label="fragment_goal_list"
         tools:layout="@layout/fragment_goal_list" >
         <action
             android:id="@+id/action_goalList_to_createGoal"
             app:destination="@id/createGoal" />
         <action
+            android:id="@+id/action_goalList_to_eventView"
+            app:destination="@id/eventView" />
+        <action
             android:id="@+id/action_goalList_to_updateGoal"
             app:destination="@id/updateGoal" />
     </fragment>
     <fragment
         android:id="@+id/createGoal"
-        android:name="com.example.finalproject.CreateHabit"
+        android:name="com.example.finalproject.frags.CreateHabit"
         android:label="fragment_create_goal"
         tools:layout="@layout/fragment_create_goal" >
         <action
@@ -28,13 +31,40 @@
     </fragment>
     <fragment
         android:id="@+id/updateGoal"
-        android:name="com.example.finalproject.UpdateGoal"
+        android:name="com.example.finalproject.frags.UpdateGoal"
         android:label="fragment_update_goal"
         tools:layout="@layout/fragment_update_goal" >
+        <argument android:name="SelectedGoal"
+            app:argType="com.example.finalproject.Databasery.Habit" />
         <action
             android:id="@+id/action_updateGoal_to_goalList"
             app:destination="@id/goalList" />
-        <argument android:name="SelectedGoal"
-            app:argType="com.example.finalproject.Habit" />
+    </fragment>
+    <fragment
+        android:id="@+id/eventView"
+        android:name="com.example.finalproject.frags.EventList"
+        android:label="fragment_event_view"
+        tools:layout="@layout/fragment_event_view" >
+        <action
+            android:id="@+id/action_eventView_to_goalList"
+            app:destination="@id/goalList" />
+        <argument
+            android:name="GoalArg"
+            app:argType="com.example.finalproject.Databasery.Habit" />
+        <action
+            android:id="@+id/action_eventView_to_createEvent"
+            app:destination="@id/createEvent" />
+    </fragment>
+    <fragment
+        android:id="@+id/createEvent"
+        android:name="com.example.finalproject.frags.CreateEvent"
+        android:label="fragment_create_event"
+        tools:layout="@layout/fragment_create_event" >
+        <action
+            android:id="@+id/action_createEvent_to_eventView"
+            app:destination="@id/eventView" />
+        <argument
+            android:name="ForGoal"
+            app:argType="com.example.finalproject.Databasery.Habit" />
     </fragment>
 </navigation>

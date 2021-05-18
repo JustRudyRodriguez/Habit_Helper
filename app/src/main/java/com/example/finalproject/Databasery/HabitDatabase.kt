@@ -1,30 +1,35 @@
-package com.example.finalproject
+package com.example.finalproject.Databasery
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities=[Habit::class], version=1, exportSchema = false)
+//,jointInfo::class may need to add this to entities.
+@Database(entities=[Habit::class, Event::class], version=1, exportSchema = false)
 abstract class HabitDatabase : RoomDatabase(){
+    //DAO allow database to access DAO object and queries.
     abstract fun habitDAO(): HabitDAO
 
     companion object{
         @Volatile
         private var INSTANCE: HabitDatabase?=null
 
-        fun getDatabase(context: Context):HabitDatabase{
-            val tempInstance = INSTANCE
+        fun getDatabase(context: Context): HabitDatabase {
+            val tempInstance =
+                INSTANCE
             if(tempInstance!= null){
                 return tempInstance
             }
             synchronized(this){
+                //This creates the instance of the database.
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     HabitDatabase::class.java,
                     "habit_database"
                 ).build()
-                INSTANCE=instance
+
+                INSTANCE =instance
                 return instance
             }
         }

@@ -1,17 +1,18 @@
-package com.example.finalproject
+package com.example.finalproject.frags
 
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
-import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.android.synthetic.main.activity_main.*
+import com.example.finalproject.Adapters.GoalAdapter
+import com.example.finalproject.Databasery.Habit
+import com.example.finalproject.Adapters.HabitViewModel
+import com.example.finalproject.R
 import kotlinx.android.synthetic.main.fragment_goal_list.*
 
 class GoalList : Fragment(R.layout.fragment_goal_list) {
