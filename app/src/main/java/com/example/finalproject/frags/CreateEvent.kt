@@ -13,12 +13,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.finalproject.Adapters.EventViewModel
 import com.example.finalproject.Calculations
-import com.example.finalproject.frags.CreateEventDirections
 import com.example.finalproject.Databasery.Event
 import com.example.finalproject.R
 import kotlinx.android.synthetic.main.fragment_create_event.*
 import kotlinx.android.synthetic.main.fragment_create_goal.*
-import kotlinx.coroutines.flow.callbackFlow
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -41,6 +40,11 @@ class CreateEvent : Fragment(R.layout.fragment_create_event),
     private var cleanDate = ""
     private var cleanTime = ""
 
+
+    val c = Calendar.getInstance()
+    val df = SimpleDateFormat("MM-dd-yyyy")
+    val formatDate: String = df.format(c.getTime())
+
     private lateinit var eventViewModel: EventViewModel
 
     private val args by navArgs<CreateEventArgs>()
@@ -51,7 +55,10 @@ class CreateEvent : Fragment(R.layout.fragment_create_event),
         EventSubmit.setOnClickListener {
             addEventToDB()
         }
-
+        BackToEvent.setOnClickListener{
+            val action = CreateEventDirections.actionCreateEventToEventView(args.ForGoal)
+            findNavController().navigate(action)
+        }
         pickDateAndTime()
 
 
@@ -59,23 +66,21 @@ class CreateEvent : Fragment(R.layout.fragment_create_event),
     }
 
     private fun addEventToDB(){
-        startime = Tv_startTime.text.toString()
-        endtime = tv_endTime.text.toString()
         timestamp = "$cleanDate $cleanTime"
-        if(!(startime.isEmpty()||endtime.isEmpty()||timestamp.isEmpty())){
+        if(!(startime.isEmpty()||endtime.isEmpty()||formatDate.isEmpty()||(Calculations.isneg(startime,endtime)))){
             val event = Event(
                 0,
                 args.ForGoal.id,
                 startime,
                 endtime,
-                "Temp Type"
+                formatDate//Using Type as a date holder now. Don't want to update DB format.
             )
             eventViewModel.addEvent( event)
             Toast.makeText(context,"Event Created Successfully!",Toast.LENGTH_SHORT).show()
             val action = CreateEventDirections.actionCreateEventToEventView(args.ForGoal)
             findNavController().navigate(action)
         }else{
-            Toast.makeText(context,"Please fill empty Fields",Toast.LENGTH_SHORT).show()
+            Toast.makeText(context,"Please enter valid Times",Toast.LENGTH_SHORT).show()
         }
 
     }
@@ -96,9 +101,13 @@ class CreateEvent : Fragment(R.layout.fragment_create_event),
 
         if(flippy){
             Tv_startTime.text = "Start Time: $cleanTime"
+            startime = cleanTime
+            StartTimeBtn.text = "End Time"
             flippy = !flippy
         }else{
-         tv_endTime.text = "End Times: $cleanTime"
+         tv_endTime.text = "End Time: $cleanTime"
+            endtime = cleanTime
+            StartTimeBtn.text = "Start Time"
         }
 
     }

@@ -15,6 +15,29 @@ object Calculations {
 
         return date.toString()
     }
+    fun getduration(t1:String,t2:String):String{
+        val t3 :String
+
+        val format = SimpleDateFormat("HH:mm")
+        var d1= format.parse(t1)
+        var d2 = format.parse(t2)
+
+        var diff =  d2.time -d1.time
+        var diffHours = diff/(60*60*1000)
+        var diffMinutes = (diff/(60*1000))-(diffHours*60)
+
+        t3 = cleantime(diffHours.toInt(),diffMinutes.toInt())
+        return t3
+    }
+    fun isneg(t1:String,t2:String):Boolean{        val t3 :String
+
+        val format = SimpleDateFormat("HH:mm")
+        var d1= format.parse(t1)
+        var d2 = format.parse(t2)
+
+        var diff =  d2.time -d1.time
+        return diff <= 0
+    }
 
     fun calculateTimeBetweenDates(startdate:String):String{
         val endDate = timeStampToString(System.currentTimeMillis())

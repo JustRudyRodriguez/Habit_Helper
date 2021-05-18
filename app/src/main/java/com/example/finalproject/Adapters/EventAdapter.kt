@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.finalproject.Calculations
 import com.example.finalproject.Databasery.Event
-import com.example.finalproject.Databasery.jointInfo
 import com.example.finalproject.R
 import kotlinx.android.synthetic.main.erecycle.view.*
 
@@ -49,10 +49,10 @@ class EventAdapter:RecyclerView.Adapter<EventAdapter.MyViewHolder>() {
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentevent = specifiedEvents[position]
         //holder.itemView.iv_habit_icon.setImageResource(currentGoal.imageid)
-        holder.itemView.Tv_EGoalName.text = currentevent.Goalid.toString()
+        holder.itemView.Tv_EDate.text = currentevent.type
         // TODO: 5/18/2021 This is to add info to the cards on eventlist
-       // holder.itemView.tv_item_description.text = currentevent.habit_description
-        //holder.itemView.tv_timeElapsed.text = Calculations.calculateTimeBetweenDates(currentevent.habit_startTime);
+       //holder.itemView.tv_item_description.text = currentevent.habit_description
+        holder.itemView.Tv_Eduration.text = "Duration: "+Calculations.getduration(currentevent.Event_startTime,currentevent.Event_endTime)
       //  holder.itemView.tv_item_createdTimeStamp.text = "Since: ${currentevent.habit_startTime}"
 
     }

@@ -12,9 +12,9 @@
         android:id="@+id/cv_cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="#FFFFFF"
         android:clickable="true"
         android:focusable="true"
+        app:cardBackgroundColor="#00838F"
         app:cardCornerRadius="8dp">
 
 
@@ -38,16 +38,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Title Big"
-                    android:textStyle="bold"
-                    android:textColor="@android:color/black"
-                    android:textSize="24sp" />
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
 
                 <TextView
                     android:id="@+id/tv_timeElapsed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/white"
                     android:textSize="18sp"
                     tools:text="12 days ago" />
 
@@ -55,7 +55,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginVertical="4dp"
-                    android:background="@android:color/black" />
+                    android:background="@color/white" />
             </LinearLayout>
 
 
@@ -64,7 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLines="4"
-                android:textColor="@android:color/black"
+                android:textColor="@color/white"
                 android:textSize="14sp"
                 tools:text="This is a test description the you can add to each item. It should be short though. 2 lines max*" />
 
@@ -74,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:maxLines="2"
-                android:textColor="@android:color/black"
+                android:textColor="@color/white"
                 android:textSize="12sp"
                 tools:text="Created 12/12/20 at 20:00" />
 

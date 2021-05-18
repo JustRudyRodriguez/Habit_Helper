@@ -64,6 +64,9 @@ class EventList : Fragment(R.layout.fragment_event_view) {
             val action = EventListDirections.actionEventViewToCreateEvent(args.GoalArg)
             findNavController().navigate(action)
         }
+        backToGoalbtn.setOnClickListener {
+            findNavController().navigate(EventListDirections.actionEventViewToGoalList())
+        }
 
     }
 

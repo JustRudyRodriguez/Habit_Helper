@@ -7,45 +7,59 @@
     android:layout_margin="4dp"
     android:orientation="horizontal">
 
+    <Space
+        android:layout_width="109dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:alpha="100" />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/Event_cardview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#FFFFFF"
+        android:layout_width="221dp"
+        android:layout_height="match_parent"
         android:clickable="true"
         android:focusable="true"
         app:cardCornerRadius="8dp">
 
-        <LinearLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_weight="1"
+            android:elevation="8dp"
+            app:cardBackgroundColor="#00838F">
 
-            <TextView
-                android:id="@+id/Tv_EGoalName"
-                android:layout_width="108dp"
-                android:layout_height="match_parent"
-                android:text="GoalName" />
+            <LinearLayout
+                android:layout_width="221dp"
+                android:layout_height="47dp"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Duration" />
+                <TextView
+                    android:id="@+id/Tv_EDate"
+                    android:layout_width="114dp"
+                    android:layout_height="match_parent"
+                    android:text="Date"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/textView9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Date" />
+                <TextView
+                    android:id="@+id/Tv_Eduration"
+                    android:layout_width="114dp"
+                    android:layout_height="match_parent"
+                    android:text="Duration"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Type" />
-        </LinearLayout>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
     </androidx.cardview.widget.CardView>
+
+    <Space
+        android:layout_width="95dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
 
 </LinearLayout>
