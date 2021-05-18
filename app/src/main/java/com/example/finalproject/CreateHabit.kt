@@ -42,6 +42,9 @@ class CreateHabit : Fragment(R.layout.fragment_create_goal),
 
         pickDateAndTime()
 
+        goalCancelButton.setOnClickListener{
+            findNavController().navigate(R.id.action_createGoal_to_goalList)
+        }
 
 
     }
