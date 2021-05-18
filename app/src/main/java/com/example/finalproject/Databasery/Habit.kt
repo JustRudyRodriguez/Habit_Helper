@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
 
+//the DB entitiy for our Habits.
 
 @Parcelize
 @Entity(tableName="habit_table")

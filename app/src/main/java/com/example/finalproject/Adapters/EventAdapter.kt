@@ -10,7 +10,7 @@ import com.example.finalproject.Calculations
 import com.example.finalproject.Databasery.Event
 import com.example.finalproject.R
 import kotlinx.android.synthetic.main.erecycle.view.*
-
+//This class interacts with the recycler view, and updates the data on the fly.
 class EventAdapter:RecyclerView.Adapter<EventAdapter.MyViewHolder>() {
 
     //var EventList = emptyList<Event>()
@@ -19,18 +19,13 @@ class EventAdapter:RecyclerView.Adapter<EventAdapter.MyViewHolder>() {
     //Each individual element in the list is defined by a view holder object.
     inner class MyViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
         init {
+            //This is an onclick listener for the events, I didn't have time to implement the features for clicking them.
+            //mostly would of been for updating/deleting them .
             itemView.Event_cardview.setOnClickListener{
                 val position = adapterPosition
                 Log.d(TAG,"Itemclicked at : $position")
                 Log.d(TAG,"ID: ${specifiedEvents[position].Eid}")
 
-                //Goallistdirection is created at compiletime.
-                //This action is used to select a specific goal/habit and update or view anything about it.
-                //actually I think they're made by the Nav.xml
-                //This function is if I want to leave on Event selection. But I don't think I need that. yet.
-                //for notes sake, this takes the item I'm clicking on into the next page.
-                //val action = GoalListDirections.actionGoalListToUpdateGoal(EventList[position])
-                //itemView.findNavController().navigate(action)
             }
         }
     }
@@ -45,8 +40,11 @@ class EventAdapter:RecyclerView.Adapter<EventAdapter.MyViewHolder>() {
         return specifiedEvents.size
     }
     //this is where I bind the data to the erecylce view.
-    //I may need to add EventAdapter before myviewholder here.
+    //there we originally intended to store more data in our events, but we cut those for time.
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+
+
+
         val currentevent = specifiedEvents[position]
         //holder.itemView.iv_habit_icon.setImageResource(currentGoal.imageid)
         holder.itemView.Tv_EDate.text = currentevent.type
@@ -56,7 +54,7 @@ class EventAdapter:RecyclerView.Adapter<EventAdapter.MyViewHolder>() {
       //  holder.itemView.tv_item_createdTimeStamp.text = "Since: ${currentevent.habit_startTime}"
 
     }
-
+    //this is called for each event to add to the recycler view.
     fun setdata(event: List<Event>){
 
         this.specifiedEvents = event

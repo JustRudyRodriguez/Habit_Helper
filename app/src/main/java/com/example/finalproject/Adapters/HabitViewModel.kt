@@ -9,7 +9,7 @@ import com.example.finalproject.Databasery.HabitDatabase
 import com.example.finalproject.Databasery.HabitRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-//This class will be used by the eventlist fragment.
+//This class is the main method our fragments interact with our database. When dealing with habits.
 class HabitViewModel (application: Application): AndroidViewModel(application) {
     private val repository: HabitRepository
     val getAllHabits: LiveData<List<Habit>>

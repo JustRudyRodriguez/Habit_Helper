@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.fragment_create_goal.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-
+//This fragment is where we create new events in our DB.
 class CreateEvent : Fragment(R.layout.fragment_create_event),
     TimePickerDialog.OnTimeSetListener,DatePickerDialog.OnDateSetListener{
 
@@ -46,16 +46,20 @@ class CreateEvent : Fragment(R.layout.fragment_create_event),
     val formatDate: String = df.format(c.getTime())
 
     private lateinit var eventViewModel: EventViewModel
-
+    //This is where we carry in our selected Habit to associate it correctly.
     private val args by navArgs<CreateEventArgs>()
 
     override fun onViewCreated(view: View, SavedINstanceState: Bundle?){
+        //we load in our viewmodel to access our DB.
         eventViewModel = ViewModelProvider(this).get(EventViewModel::class.java)
-
+        //submission button.
         EventSubmit.setOnClickListener {
             addEventToDB()
         }
+
+        //a back button to the eventlist page.
         BackToEvent.setOnClickListener{
+            //this back button sends back our args, to make sure we remain on the same Habit.
             val action = CreateEventDirections.actionCreateEventToEventView(args.ForGoal)
             findNavController().navigate(action)
         }
@@ -66,8 +70,13 @@ class CreateEvent : Fragment(R.layout.fragment_create_event),
     }
 
     private fun addEventToDB(){
+
+        //timestamp is from our habit function, we didn't include it in our entities for time.
         timestamp = "$cleanDate $cleanTime"
+
+        //we check to make sure we have all the elements we need, and that time isn't negative.
         if(!(startime.isEmpty()||endtime.isEmpty()||formatDate.isEmpty()||(Calculations.isneg(startime,endtime)))){
+            //create our event with the supplied vars.
             val event = Event(
                 0,
                 args.ForGoal.id,
@@ -75,8 +84,11 @@ class CreateEvent : Fragment(R.layout.fragment_create_event),
                 endtime,
                 formatDate//Using Type as a date holder now. Don't want to update DB format.
             )
+            //update the DB via our viewmodel
             eventViewModel.addEvent( event)
             Toast.makeText(context,"Event Created Successfully!",Toast.LENGTH_SHORT).show()
+
+            //bring user back to eventlist, while maintain the original habit as an arg.
             val action = CreateEventDirections.actionCreateEventToEventView(args.ForGoal)
             findNavController().navigate(action)
         }else{
@@ -85,6 +97,8 @@ class CreateEvent : Fragment(R.layout.fragment_create_event),
 
     }
 
+
+    //the following functions are similar to our createGoal functions, mostly for adjusting time to fit DB reqs.
     fun pickDateAndTime() {
         StartTimeBtn.setOnClickListener {
             getTimeCalandar()

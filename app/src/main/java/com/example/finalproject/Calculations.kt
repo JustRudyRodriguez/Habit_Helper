@@ -3,7 +3,7 @@ package com.example.finalproject
 import java.sql.Date
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
-
+//some simple functions for converting time.
 object Calculations {
 
     fun timeStampToString(timeStamp:Long):String{

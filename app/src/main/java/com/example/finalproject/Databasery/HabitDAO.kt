@@ -3,7 +3,7 @@ package com.example.finalproject.Databasery
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import androidx.room.OnConflictStrategy
-
+//This dAO object is pretty much storing our SQL commands, only 1 is irregular.
 @Dao
 interface HabitDAO {
     @Insert(onConflict =OnConflictStrategy.IGNORE)
@@ -22,7 +22,7 @@ interface HabitDAO {
     suspend fun deleteAll()
     //need to fix this
 
-    //This is for join searches.
+    //This is for join searches. This allows us to view the events for a specific element.
     @Transaction
     @Query("SELECT * from habit_table where id = :id")//This may not be correct.
     fun getEventLists(id:Int):LiveData<List<jointInfo>>

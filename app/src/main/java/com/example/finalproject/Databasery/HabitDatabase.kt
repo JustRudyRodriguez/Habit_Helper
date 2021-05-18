@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-//,jointInfo::class may need to add this to entities.
+//Where we create the database object.
 @Database(entities=[Habit::class, Event::class], version=1, exportSchema = false)
 abstract class HabitDatabase : RoomDatabase(){
     //DAO allow database to access DAO object and queries.

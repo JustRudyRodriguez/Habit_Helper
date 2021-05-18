@@ -8,19 +8,13 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-
+// This main activity Hosts the Nave controller that determines what fragment to display.
+//The initial fragment is the GoalList fragment.
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //val addButton = findViewById<FloatingActionButton>(R.id.Fab)
-       // addButton.setOnClickListener{
-            //val intent= Intent(this, GoalSetupActivity::class.java )
-           // startActivity(intent);
-        //}
-
-                // setupActionBarWithNavController(findNavController(R.id.nav_fragmentController))
     }
 
     override fun onSupportNavigateUp(): Boolean {

@@ -10,19 +10,18 @@ import com.example.finalproject.Databasery.HabitRepository
 import com.example.finalproject.Databasery.jointInfo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-
+//This class is the main way fragments get event data from the database.
 class EventViewModel (application: Application): AndroidViewModel(application) {
     //I think I only need 1 repo.
     private val repository: HabitRepository
     val getAllEvents: LiveData<List<Event>>
+
     var specifiedEvents: LiveData<List<Event>>
 
     init {
         val habitDAO = HabitDatabase.getDatabase(application).habitDAO()
         repository =
             HabitRepository(habitDAO)
-        // I need to update this to only have events from selected Goal, leaving for now.
-        // TODO: 5/18/2021
         getAllEvents = repository.getAllEvents
         repository.specifyEvents(0)
         specifiedEvents =repository.getTheseEvents
@@ -51,6 +50,8 @@ class EventViewModel (application: Application): AndroidViewModel(application) {
             repository.deleteAllEvent()
         }
     }
+
+    //This is what allows us to specify which goal we're looking for events from .
     fun updatelist(id:Int){
         repository.specifyEvents(id)
         specifiedEvents = repository.getTheseEvents

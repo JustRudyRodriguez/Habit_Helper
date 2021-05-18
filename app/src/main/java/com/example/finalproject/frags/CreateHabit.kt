@@ -17,7 +17,7 @@ import com.example.finalproject.R
 import kotlinx.android.synthetic.main.fragment_create_goal.*
 import java.util.*
 
-
+//this fragment will capture data from the user, and format it to conform with DB requirements. .
 class CreateHabit : Fragment(R.layout.fragment_create_goal),
     TimePickerDialog.OnTimeSetListener,DatePickerDialog.OnDateSetListener{
 
@@ -38,14 +38,15 @@ class CreateHabit : Fragment(R.layout.fragment_create_goal),
     private lateinit var habitViewModel: HabitViewModel
 
     override fun onViewCreated(view: View, SavedINstanceState: Bundle?){
+        //We load in out viewmodel to interact with the DB.
         habitViewModel = ViewModelProvider(this).get(HabitViewModel::class.java)
-
+        // this button submits the data to the db.
         CreateHabit_Btn.setOnClickListener {
             addHabitToDB()
         }
 
         pickDateAndTime()
-
+        //Brings you back to the initial page without any edits.
         goalCancelButton.setOnClickListener{
             findNavController().navigate(R.id.action_createGoal_to_goalList)
         }
@@ -54,6 +55,9 @@ class CreateHabit : Fragment(R.layout.fragment_create_goal),
     }
 
     private fun addHabitToDB(){
+
+        //Reads the data from the input areas, while checking to make sure they aren't empty
+        //if all is well, we create a new HABIT, and add it to our database through the viewmodel.
         title = GoalTitle.text.toString()
         description = GoalDesc.text.toString()
         timestamp = "$cleanDate $cleanTime"
@@ -67,7 +71,7 @@ class CreateHabit : Fragment(R.layout.fragment_create_goal),
             )
             habitViewModel.addHabit(habit)
             Toast.makeText(context,"Habit Created Successfully!",Toast.LENGTH_SHORT).show()
-
+            //after the new habit is made, we navigate back to the main page.
             findNavController().navigate(R.id.action_createGoal_to_goalList)
             }else{
             Toast.makeText(context,"Please fill empty Fields",Toast.LENGTH_SHORT).show()
@@ -75,6 +79,8 @@ class CreateHabit : Fragment(R.layout.fragment_create_goal),
 
     }
 
+
+    //these functions are to format the dates before adding them to our database.
     fun pickDateAndTime() {
         PickDate_Btn.setOnClickListener {
             getDateCalendar()

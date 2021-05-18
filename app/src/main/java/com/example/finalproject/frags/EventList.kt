@@ -22,24 +22,29 @@ import com.example.finalproject.Databasery.jointInfo
 import com.example.finalproject.R
 import kotlinx.android.synthetic.main.fragment_event_view.*
 import kotlinx.android.synthetic.main.fragment_goal_list.*
-
+//This fragment is the view where you can see all the events for a specified Habit.
 class EventList : Fragment(R.layout.fragment_event_view) {
 
-
+    //this variable is the Habit we selected, it was sent here via the navigator.
     private val args by navArgs<EventListArgs>()
+
     private lateinit var eventList: List<Event>
     private lateinit var eventViewModel: EventViewModel
     private lateinit var adapter: EventAdapter
     private lateinit var jointlist: List<jointInfo>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
+        //We add an adapter to our recycler view here, so we can update the elements.
         adapter = EventAdapter()
         rv_Eventlist.adapter = adapter
         rv_Eventlist.layoutManager = LinearLayoutManager(context)
 
+        //This view model is how we access the data from our repository/DB.
         eventViewModel = ViewModelProvider(this).get(EventViewModel::class.java)
+        //here we specify we only want events for the habit we clicked on.
         eventViewModel.updatelist(args.GoalArg.id)
+
+        //we add all events to our adapter through this function.
         eventViewModel.specifiedEvents.observe(viewLifecycleOwner, Observer {
             adapter.setdata(it)
             eventList = it
@@ -53,7 +58,7 @@ class EventList : Fragment(R.layout.fragment_event_view) {
               //  tv_emptyView.visibility = View.GONE
             }
         })
-
+        //This is to refresh on swipe, not needed unless we use a remote DB.
         setHasOptionsMenu(true)
         swipeToRefreshEvent.setOnRefreshListener {
             adapter.setdata(eventList)
@@ -64,6 +69,7 @@ class EventList : Fragment(R.layout.fragment_event_view) {
             val action = EventListDirections.actionEventViewToCreateEvent(args.GoalArg)
             findNavController().navigate(action)
         }
+        //back button to main page.
         backToGoalbtn.setOnClickListener {
             findNavController().navigate(EventListDirections.actionEventViewToGoalList())
         }
@@ -74,12 +80,5 @@ class EventList : Fragment(R.layout.fragment_event_view) {
         inflater.inflate(R.menu.menu,menu)
     }
 
-    /*Don't need this function because I don't want a delete all feature.
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.nav_delete -> goalViewModel.deleteallgoals()
-        }
 
-        return super.onOptionsItemSelected(item)
-    }*/
 }

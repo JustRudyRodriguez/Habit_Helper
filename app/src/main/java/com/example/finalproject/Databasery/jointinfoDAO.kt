@@ -2,7 +2,7 @@ package com.example.finalproject.Databasery
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-
+//Didn't end up using this.Thought I needed a seperate DAO.
 @Dao
 interface jointinfoDAO {
 

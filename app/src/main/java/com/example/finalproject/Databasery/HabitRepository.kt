@@ -1,7 +1,7 @@
 package com.example.finalproject.Databasery
 
 import androidx.lifecycle.LiveData
-
+//The main method the view model access database functions.
 class HabitRepository(private val habitDAO: HabitDAO) {
     val getAllHabits: LiveData<List<Habit>> = habitDAO.getAllHabits()
     val getAllEvents: LiveData<List<Event>> = habitDAO.getAllEvent()

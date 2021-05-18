@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
 
-
+//the DB entitiy for our events.
 @Parcelize
 @Entity(tableName="event_table")
 data class Event(
