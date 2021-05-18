@@ -5,6 +5,8 @@ import androidx.lifecycle.LiveData
 class HabitRepository(private val habitDAO: HabitDAO) {
     val getAllHabits: LiveData<List<Habit>> = habitDAO.getAllHabits()
     val getAllEvents: LiveData<List<Event>> = habitDAO.getAllEvent()
+    //val getJointList: LiveData<List<jointInfo>>
+    var getTheseEvents:LiveData<List<Event>> = habitDAO.specificList(0)
     suspend fun addHabit(habit: Habit) {
         habitDAO.addHabit(habit)
     }
@@ -40,4 +42,7 @@ class HabitRepository(private val habitDAO: HabitDAO) {
         habitDAO.deleteAllEvents()
     }
 
+    fun specifyEvents(id: Int){
+        getTheseEvents = habitDAO.specificList(id)
+    }
 }

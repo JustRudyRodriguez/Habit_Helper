@@ -18,6 +18,7 @@ import com.example.finalproject.Adapters.GoalAdapter
 import com.example.finalproject.Databasery.Habit
 import com.example.finalproject.Adapters.HabitViewModel
 import com.example.finalproject.Databasery.Event
+import com.example.finalproject.Databasery.jointInfo
 import com.example.finalproject.R
 import kotlinx.android.synthetic.main.fragment_event_view.*
 import kotlinx.android.synthetic.main.fragment_goal_list.*
@@ -29,6 +30,7 @@ class EventList : Fragment(R.layout.fragment_event_view) {
     private lateinit var eventList: List<Event>
     private lateinit var eventViewModel: EventViewModel
     private lateinit var adapter: EventAdapter
+    private lateinit var jointlist: List<jointInfo>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
@@ -37,8 +39,8 @@ class EventList : Fragment(R.layout.fragment_event_view) {
         rv_Eventlist.layoutManager = LinearLayoutManager(context)
 
         eventViewModel = ViewModelProvider(this).get(EventViewModel::class.java)
-
-        eventViewModel.getAllEvents.observe(viewLifecycleOwner, Observer {
+        eventViewModel.updatelist(args.GoalArg.id)
+        eventViewModel.specifiedEvents.observe(viewLifecycleOwner, Observer {
             adapter.setdata(it)
             eventList = it
             //Replace these text views

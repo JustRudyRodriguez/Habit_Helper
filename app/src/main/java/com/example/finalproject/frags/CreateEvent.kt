@@ -83,7 +83,7 @@ class CreateEvent : Fragment(R.layout.fragment_create_event),
     fun pickDateAndTime() {
         StartTimeBtn.setOnClickListener {
             getTimeCalandar()
-            TimePickerDialog(context,this,hour,minute,true).show()
+            TimePickerDialog(context,this,hour,minute,true ).show()
 
         }
 
@@ -100,7 +100,6 @@ class CreateEvent : Fragment(R.layout.fragment_create_event),
         }else{
          tv_endTime.text = "End Times: $cleanTime"
         }
-
 
     }
 

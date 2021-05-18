@@ -24,8 +24,8 @@ interface HabitDAO {
 
     //This is for join searches.
     @Transaction
-    @Query("SELECT * from habit_table")//This may not be correct.
-    fun getEventLists():List<jointInfo>
+    @Query("SELECT * from habit_table where id = :id")//This may not be correct.
+    fun getEventLists(id:Int):LiveData<List<jointInfo>>
 
     @Insert(onConflict =OnConflictStrategy.IGNORE)
     suspend fun addEvent(event: Event)
@@ -42,5 +42,10 @@ interface HabitDAO {
     @Query("DELETE FROM event_table")
     suspend fun deleteAllEvents()
     //need to fix this
+
+    @Query("SELECT * FROM event_table where Goalid = :id")
+    fun specificList(id :Int):LiveData<List<Event>>
+
+
 
 }
